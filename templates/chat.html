@@ -1,0 +1,52 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+        
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+          $("#link").attr('value',document.URL);
+        })
+      TB.addEventListener("exception", exceptionHandler);
+      var session = TB.initSession("{{session_id}}"); // Replace with your own session ID. See https://dashboard.tokbox.com/projects
+      session.addEventListener("sessionConnected", sessionConnectedHandler);
+      session.addEventListener("streamCreated", streamCreatedHandler);
+      session.connect({{api_key}}, "{{token}}"); // Replace with your API key and token. See https://dashboard.tokbox.com/projects
+
+      function sessionConnectedHandler(event) {
+         subscribeToStreams(event.streams);
+         session.publish();
+      }
+      
+      function streamCreatedHandler(event) {
+        subscribeToStreams(event.streams);
+      }
+      
+      function subscribeToStreams(streams) {
+        for (var i = 0; i < streams.length; i++) {
+          var stream = streams[i];
+          console.log(stream.connection.connectionId+"&"+session.connection.connectionId);
+          if (stream.connection.connectionId != session.connection.connectionId) {
+            session.subscribe(stream);
+          }
+        }
+      }
+      
+      function exceptionHandler(event) {
+        alert(event.message);
+      }
+      
+
+    </script>
+
+    </head>
+    <body>
+      <h1 style= "text-align: center">OpenTok Flask Demo Chatroom</h1>
+      Share this chatroom!
+      <input style= "width: 150px;"  id= "link" type= "text" readonly= "readonly" value= "" />
+    </body>
+</html>

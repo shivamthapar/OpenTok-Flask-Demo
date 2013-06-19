@@ -1,0 +1,7 @@
+This tutorial will show you how to create a simple, yet functional chatroom using the OpenTok API and Flask. <a href= "http://flask.pocoo.org/">Flask</a> is a python  based micro-framework to create web apps. 
+
+The App
+The app we'll be creating will be a simple website where you can create a chatroom and name it. The site will then generate a url (website.com/chats/chatroomname) which you can share with others that you want to chat with. When another person visits this url, they will join the chatroom. 
+
+Setup
+So, let's get started! First of all, you'll need to <a href= "http://flask.pocoo.org/docs/installation/">install Flask</a>.  Then, create a new folder and inside, make a new file called main.py. We'll be setting up an Sqlite Database 
