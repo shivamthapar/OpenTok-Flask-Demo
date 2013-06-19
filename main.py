@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 app.config.from_object(__name__)
 
-api_key = "32626492"        								# Replace with your OpenTok API key.
-api_secret = "0d7c7a0772e3db3e2ab2d4bab6d5e50d4ac355ef"     # Replace with your OpenTok API secret.
+api_key = ""        # Replace with your OpenTok API key.
+api_secret = ""     # Replace with your OpenTok API secret.
 
 opentok_sdk = OpenTokSDK.OpenTokSDK(api_key, api_secret)
 
